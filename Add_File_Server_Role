@@ -1,0 +1,6 @@
+Install-WindowsFeature File-Services, FS-DFS-Namespace, FS-DFS-Replication -IncludeManagementTools
+$domain = "Domain"
+$password = "MyPassword" | ConvertTo-SecureString -asPlainText -Force
+$username = "$domain\User" 
+$credential = New-Object System.Management.Automation.PSCredential($username,$password)
+Add-Computer -DomainName $domain -Credential $credential -OUPath "" -Restart
